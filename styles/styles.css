@@ -17,7 +17,8 @@
 
     --color-primario: #92E3A9;
     --color-secundario: #43B365;
-    --color-acento: #3C8296;
+    /* --color-acento: #3C8296; */
+    --color-acento: #2E6170;
 
     --fuente-titulo: "Kanit", sans-serif;
     --fuente-textos: "Mulish", sans-serif;
@@ -104,12 +105,12 @@ body {
 }
 
 .salida__texto {
-    text-align: center;
-    padding: calc(var(--espaciado-vertical)/2) 1.5rem;
+    padding: calc(var(--espaciado-vertical)/2) 0.75rem;
     font-size: 1rem;
 }
 
 .salida__texto__resaltado {
+    text-align: center;
     display: block;
     font-size: 1.5rem;
     font-weight: 600;

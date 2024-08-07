@@ -4,22 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Encriptador</title>
+    <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
-    <main>
-        <h1>Encriptador de texto</h1>
-        <textarea placeholder="Ingresa un texto en minúsculas, sin acentos ni caracteres especiales."></textarea>
-        <button>Encriptar</button>
-        <button>Desencriptar</button>
-        <p>Texto encriptado/desencriptado</p>
+    <header>
+        <h1 class="titulo">Encripta tu mensaje</h1>       
+    </header>
 
-        <aside>
-            <a href="https://storyset.com/online" target="_blank">
-                <img src="./assets/envio-mensajes.svg" alt="Dos personas enviándose mensajes">
-            </a>            
-        </aside>
+    <main class="main">
+        <section class="entrada">
+            <textarea class="entrada__texto" placeholder="Ingresa el texto aquí"></textarea>
+            <p class="entrada__reglas">Sólo minúsculas, sin acentos ni caracteres especiales.</p>    
+            <button class="entrada__btn__encriptar">Encriptar</button>
+            <button class="entrada__btn__desencriptar">Desencriptar</button>
+        </section>
     </main>
 
-    <footer>Desarrollado por Mauricio TM</footer>
+    <aside class="salida">
+        <p class="salida__texto"><span class="salida__texto__resaltado">Ningún mensaje fue encontrado</span>Ingresa el texto que desees encriptar o desencriptar.</p>
+        <a class="salida__link" href="https://storyset.com/online" target="_blank">
+            <img src="./assets/envio-mensajes.svg" alt="Dos personas enviándose mensajes">
+        </a>            
+    </aside>
+
+    <footer class="footer">Desarrollado por Mauricio TM</footer>
 </body>
 </html>

@@ -1,0 +1,129 @@
+/* Importo fuentes desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Mulish&display=swap');
+
+
+/* Estilos para resetear los valores por defecto de los navegadores */
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+/* Creación de variables */
+:root {
+    --margen-lateral: 1rem;
+    --espaciado-vertical: 4rem;
+    --redondeo-bordes: 0.5rem;
+
+    --color-primario: #92E3A9;
+    --color-secundario: #43B365;
+    --color-acento: #3C8296;
+
+    --fuente-titulo: "Kanit", sans-serif;
+    --fuente-textos: "Mulish", sans-serif;
+}
+
+body {
+    background-color: #92E3A9;
+}
+
+.titulo {
+    padding: 2rem var(--margen-lateral);
+    text-align: center;
+    font-family: var(--fuente-titulo);
+    font-size: 2.25rem;
+    font-weight: 600;
+}
+
+.main {
+    padding: 0px var(--margen-lateral);
+}
+
+.entrada {
+    padding-bottom: var(--espaciado-vertical);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-family: var(--fuente-textos);
+}
+
+.entrada__texto {
+    height: 25vh;
+    background-color: var(--color-secundario);
+    /* color: #000000; */
+    font-size: 1.2rem;
+    border: none;
+    border-radius: var(--redondeo-bordes);
+    resize: none;
+    padding: var(--margen-lateral);
+}
+
+.entrada__texto:focus {
+    outline: none;
+}
+
+.entrada__texto::placeholder {
+    font-family: var(--fuente-textos);
+    color: #090909;
+}
+
+.entrada__reglas {
+    font-size: 0.9rem;
+    padding: 0px calc(1 * var(--margen-lateral)) calc(var(--espaciado-vertical)/4);
+}
+
+.entrada button {
+    padding: 1rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    /* border: none; */
+}
+
+.entrada__btn__encriptar {
+    background-color: var(--color-acento);
+    color: #FFFFFF;
+    border: none;
+}
+
+.entrada__btn__desencriptar {
+    background-color: var(--color-primario);
+    border: 2px solid var(--color-acento);
+    color: var(--color-acento);
+    /* outline: 2px solid var(--color-acento); */
+    /* outline: none; */
+}
+
+.salida {
+    margin: 0px var(--margen-lateral) var(--espaciado-vertical);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #FFFFFF;
+    border-radius: var(--redondeo-bordes);
+    font-family: var(--fuente-textos);
+}
+
+.salida__texto {
+    text-align: center;
+    padding: calc(var(--espaciado-vertical)/2) 1.5rem;
+    font-size: 1rem;
+}
+
+.salida__texto__resaltado {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding-bottom: 0.75rem;
+}
+
+.salida__link {
+    display: none;
+}
+
+.footer {
+    padding: calc(var(--espaciado-vertical)/4) var(--margen-lateral);
+    background-color: var(--color-secundario);
+    font-family: var(--fuente-textos);
+    font-size: 0.9rem;
+    text-align: center;
+}

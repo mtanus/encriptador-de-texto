@@ -1,6 +1,7 @@
 // Declaración de variables
 let areaDeTextoEntrada = document.querySelector('.entrada__texto');
-let textoDeSalida = document.querySelector('.salida__texto');
+let textoNingunMensaje = document.querySelector('.salida__ningun__texto');
+let textoDeSalida = document.querySelector('.salida__texto__resultado');
 let botonEncriptar = document.querySelector('.entrada__btn__encriptar');
 let botonDesencriptar = document.querySelector('.entrada__btn__desencriptar');
 
@@ -63,14 +64,17 @@ function obtenerTextoDeEntrada() {
 }
 
 function mostrarTextoDeSalida(texto) {
+    textoNingunMensaje.style.display = "none";
+    // textoDeSalida.setAttribute('display', "inline"); // Cambia sólo el atributo en HTML pero NO en CSS
+    textoDeSalida.style.display = "inline";
     textoDeSalida.innerHTML = texto;
 }
 
 function setearInicioDeApp() {
-    areaDeTextoEntrada.value = "";
-    mostrarTextoDeSalida(
-        `<span class="salida__texto__resaltado">Ningún mensaje fue encontrado</span>
-        Ingresa el texto que desees encriptar o desencriptar.`);
+    // areaDeTextoEntrada.value = "";
+    // mostrarTextoDeSalida(
+    //     `<span class="salida__texto__resaltado">Ningún mensaje fue encontrado</span>
+    //     Ingresa el texto que desees encriptar o desencriptar.`);
 }
 
 // Manejo de eventos

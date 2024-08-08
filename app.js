@@ -58,27 +58,45 @@ function desencriptarTexto(textoADesencriptar) {
     return textoDesencriptado;
 }
 
+function obtenerTextoDeEntrada() {
+    return areaDeTextoEntrada.value;
+}
+
+function mostrarTextoDeSalida(texto) {
+    textoDeSalida.innerHTML = texto;
+}
+
+function setearInicioDeApp() {
+    areaDeTextoEntrada.value = "";
+    mostrarTextoDeSalida(
+        `<span class="salida__texto__resaltado">Ningún mensaje fue encontrado</span>
+        Ingresa el texto que desees encriptar o desencriptar.`);
+}
+
 // Manejo de eventos
 botonEncriptar.addEventListener('click', function() {
-    let texto = areaDeTextoEntrada.value;
-    console.log(areaDeTextoEntrada.value);
+    let texto = obtenerTextoDeEntrada();
+    console.log(obtenerTextoDeEntrada());
     
     if (texto != "") {
         console.log("El texto a encriptar será: " + texto);
         console.log("El texto encriptado resultante es: " + encriptarTexto(texto));
 
-        textoDeSalida.innerHTML = encriptarTexto(texto);
+        mostrarTextoDeSalida(encriptarTexto(texto));
     }
 });
 
 botonDesencriptar.addEventListener('click', function() {
-    let texto = areaDeTextoEntrada.value;
-    console.log(areaDeTextoEntrada.value);
+    let texto = obtenerTextoDeEntrada();
+    console.log(obtenerTextoDeEntrada());
 
     if (texto != "") {
         console.log("El texto a desencriptar será: " + texto);
         console.log("El texto desencriptado resultante es: " + desencriptarTexto(texto));
 
-        textoDeSalida.innerHTML = desencriptarTexto(texto);
+        mostrarTextoDeSalida(desencriptarTexto(texto));
     }
 });
+
+
+setearInicioDeApp();

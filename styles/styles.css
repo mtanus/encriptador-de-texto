@@ -13,6 +13,7 @@
 :root {
     --margen-lateral: 1rem;
     --espaciado-vertical: 4rem;
+    --espaciado-vertical-items: 1rem;
     --redondeo-bordes: 0.5rem;
 
     --color-primario: #92E3A9;
@@ -44,7 +45,7 @@ body {
     padding-bottom: var(--espaciado-vertical);
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--espaciado-vertical-items);
     font-family: var(--fuente-textos);
 }
 
@@ -73,6 +74,12 @@ body {
     padding: 0px calc(1 * var(--margen-lateral)) calc(var(--espaciado-vertical)/4);
 }
 
+.entrada__botones {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-vertical-items);
+}
+
 .entrada button {
     padding: 1rem;
     border-radius: 1rem;
@@ -96,21 +103,22 @@ body {
 
 .salida {
     margin: 0px var(--margen-lateral) var(--espaciado-vertical);
+    padding: var(--margen-lateral);
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--espaciado-vertical-items);
     background-color: #FFFFFF;
     border-radius: var(--redondeo-bordes);
     font-family: var(--fuente-textos);
 }
 
-.salida__texto {
+.salida__ningun__texto {
     padding: calc(var(--espaciado-vertical)/2) 0.75rem;
     font-size: 1rem;
+    text-align: center;
 }
 
 .salida__texto__resaltado {
-    text-align: center;
     display: block;
     font-size: 1.5rem;
     font-weight: 600;
@@ -121,10 +129,82 @@ body {
     display: none;
 }
 
+.salida__texto__resultado {
+    display: none;
+}
+
 .footer {
     padding: calc(var(--espaciado-vertical)/4) var(--margen-lateral);
     background-color: var(--color-secundario);
     font-family: var(--fuente-textos);
     font-size: 0.9rem;
     text-align: center;
+}
+
+/* Agrego media query para tablet */
+@media screen and (min-width: 768px) {
+    /* NO FUNCIONO REDEFINIR VARIABLES */
+    /* :root {
+        --color-primario: yellow;
+    } */
+
+    body{
+        /* background-color: yellow; */
+    }
+
+    .main {
+        padding-left: calc(3 * var(--margen-lateral));
+        padding-right: calc(3 * var(--margen-lateral));
+    }
+
+    .entrada__botones {
+        flex-direction: row;
+    }
+
+    .entrada__btn__encriptar, 
+    .entrada__btn__desencriptar {
+        flex-grow: 1;
+    }
+    
+    .salida {
+        margin-left: calc(3 * var(--margen-lateral));
+        margin-right: calc(3 * var(--margen-lateral));
+    }
+
+
+/* Agrego media query para pc desktop */
+@media screen and (min-width: 1200px) {
+    body{
+        /* background-color: red; */
+    }
+
+    .app {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+    }
+
+    .main {
+        /* flex-grow: 20; */
+        width: 70%;
+    }
+
+    .entrada__texto {
+        height: 60vh;
+    }    
+
+    .salida {
+        width: 30%;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .salida__link {
+        display: block;
+    }
+
+    .salida__imagen__chat {
+        display: block;
+    }
+
 }

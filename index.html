@@ -1,40 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Encriptador</title>
     <link rel="stylesheet" href="./styles/styles.css">
 </head>
+
 <body>
     <header>
-        <h1 class="titulo">Encripta tu mensaje</h1>       
+        <h1 class="titulo">Encripta tu mensaje</h1>
     </header>
 
-    <main class="main">
-        <section class="entrada">
-            <textarea class="entrada__texto" placeholder="Ingresa el texto aquí"></textarea>
-            <p class="entrada__reglas">Sólo minúsculas, sin acentos ni caracteres especiales.</p>
-            <div class="entrada__botones">
-                <button class="entrada__btn__encriptar">Encriptar</button>
-                <button class="entrada__btn__desencriptar">Desencriptar</button>    
-            </div>    
-        </section>
-    </main>
+    <div class="app">
 
-    <aside class="salida">
-        <p class="salida__ningun__texto">
-            <span class="salida__texto__resaltado">Ningún mensaje fue encontrado</span>Ingresa el texto que desees encriptar o desencriptar.
-        </p>
-        <a class="salida__link" href="https://storyset.com/online" target="_blank">
-            <img src="./assets/envio-mensajes.svg" alt="Dos personas enviándose mensajes">
-        </a>
-        <p class="salida__texto__resultado">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit debitis voluptatem molestias aut rem ipsam, perspiciatis magni dolorem alias ab possimus earum, facilis delectus veritatis quaerat perferendis! Nisi, pariatur praesentium?
-        </p>            
-    </aside>
+        <main class="main">
+            <section class="entrada">
+                <textarea class="entrada__texto" placeholder="Ingresa el texto aquí"></textarea>
+                <p class="entrada__reglas">Sólo minúsculas, sin acentos ni caracteres especiales.</p>
+                <div class="entrada__botones">
+                    <button class="entrada__btn__encriptar">Encriptar</button>
+                    <button class="entrada__btn__desencriptar">Desencriptar</button>
+                </div>
+            </section>
+        </main>
+
+        <aside class="salida">
+            <a class="salida__link" href="https://storyset.com/online" target="_blank">
+                <img class="salida__imagen__chat" src="./assets/envio-mensajes.svg"
+                    alt="Dos personas enviándose mensajes">
+            </a>
+            <p class="salida__ningun__texto">
+                <span class="salida__texto__resaltado">Ningún mensaje fue encontrado</span>Ingresa el texto que desees
+                encriptar o desencriptar.
+            </p>
+            <p class="salida__texto__resultado">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit debitis
+                voluptatem molestias aut rem ipsam, perspiciatis magni dolorem alias ab possimus earum, facilis delectus
+                veritatis quaerat perferendis! Nisi, pariatur praesentium?
+            </p>
+        </aside>
+
+    </div>
 
     <footer class="footer">Desarrollado por Mauricio TM</footer>
 
     <script src="./app.js"></script>
 </body>
+
 </html>

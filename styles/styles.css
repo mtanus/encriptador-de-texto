@@ -141,3 +141,34 @@ body {
     text-align: center;
 }
 
+/* Agrego media query para tablet */
+@media screen and (min-width: 768px) {
+    /* NO FUNCIONO REDEFINIR VARIABLES */
+    /* :root {
+        --color-primario: yellow;
+    } */
+
+    body{
+        background-color: yellow;
+    }
+
+    .main {
+        padding-left: calc(3 * var(--margen-lateral));
+        padding-right: calc(3 * var(--margen-lateral));
+    }
+
+    .entrada__botones {
+        flex-direction: row;
+    }
+
+    .entrada__btn__encriptar, 
+    .entrada__btn__desencriptar {
+        flex-grow: 1;
+    }
+    
+    .salida {
+        margin-left: calc(3 * var(--margen-lateral));
+        margin-right: calc(3 * var(--margen-lateral));
+    }
+
+

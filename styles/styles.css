@@ -126,11 +126,12 @@ body {
 }
 
 .salida__link {
-    display: none;
+    /* display: none; */
 }
 
 .salida__texto__resultado {
-    display: none;
+    /* display: none; */
+    font-size: 1.25rem;
 }
 
 .footer {
@@ -140,6 +141,21 @@ body {
     font-size: 0.9rem;
     text-align: center;
 }
+
+
+/* Estilos a manejar desde JavaScript */
+.elemento__inline {
+    display: inline;
+}
+
+.elemento__oculto {
+    display: none;
+}
+
+.texto__centrado {
+    text-align: center;
+}
+
 
 /* Agrego media query para tablet */
 @media screen and (min-width: 768px) {
@@ -200,11 +216,15 @@ body {
     }
 
     .salida__link {
-        display: block;
+        /* display: block; */
     }
 
     .salida__imagen__chat {
-        display: block;
+        /* display: block; */
+    }
+
+    .salida__texto__resultado {
+        height: 100%;
     }
 
 }

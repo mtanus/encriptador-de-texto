@@ -1,9 +1,14 @@
 // Declaración de variables
 let areaDeTextoEntrada = document.querySelector('.entrada__texto');
-let textoNingunMensaje = document.querySelector('.salida__ningun__texto');
+let textoAvisoNingunMensaje = document.querySelector('.salida__ningun__texto');
 let textoDeSalida = document.querySelector('.salida__texto__resultado');
 let botonEncriptar = document.querySelector('.entrada__btn__encriptar');
 let botonDesencriptar = document.querySelector('.entrada__btn__desencriptar');
+let linkImagenSalida = document.querySelector('.salida__link');
+let imagenDelChat = document.querySelector('.salida__imagen__chat');
+
+let ningunMensaje = true;
+let anchoDeVentana = window.innerWidth;
 
 // Declaración de funciones
 function encriptarTexto(textoAEncriptar) {
@@ -64,17 +69,81 @@ function obtenerTextoDeEntrada() {
 }
 
 function mostrarTextoDeSalida(texto) {
-    textoNingunMensaje.style.display = "none";
-    // textoDeSalida.setAttribute('display', "inline"); // Cambia sólo el atributo en HTML pero NO en CSS
-    textoDeSalida.style.display = "inline";
+    // linkImagenSalida.classList.remove('elemento__inline');
+    // linkImagenSalida.classList.add('elemento__oculto');
+    ocultarElemento(linkImagenSalida);
+
+    // imagenDelChat.classList.remove('elemento__inline');
+    // imagenDelChat.classList.add('elemento__oculto');
+    ocultarElemento(imagenDelChat);
+
+    // textoAvisoNingunMensaje.classList.remove('elemento__inline');
+    // textoAvisoNingunMensaje.classList.add('elemento__oculto');
+    ocultarElemento(textoAvisoNingunMensaje);
+
+
+    // textoDeSalida.setAttribute('display', "inline"); // Cambia sólo el atributo en HTML como estilo inline pero NO en CSS
+    // textoDeSalida.classList.remove('elemento__oculto');
+    // textoDeSalida.classList.add('elemento__inline');
+    visibilizarElemento(textoDeSalida);
     textoDeSalida.innerHTML = texto;
 }
 
+function visibilizarElemento(elemento) {
+    if (elemento.classList.contains('elemento__oculto')) {
+        elemento.classList.remove('elemento__oculto');        
+    }
+    elemento.classList.add('elemento__inline');
+}
+
+function ocultarElemento(elemento) {
+    if (elemento.classList.contains('elemento__inline')) {
+        elemento.classList.remove('elemento__inline');        
+    }
+    elemento.classList.add('elemento__oculto');
+}
+
+function visibilizarImagen() {
+    if (anchoDeVentana >= 1200) {
+        visibilizarElemento(linkImagenSalida);
+        visibilizarElemento(imagenDelChat);
+    } else {
+        ocultarElemento(linkImagenSalida);
+        ocultarElemento(imagenDelChat);
+    }
+}
+
 function setearInicioDeApp() {
-    // areaDeTextoEntrada.value = "";
-    // mostrarTextoDeSalida(
-    //     `<span class="salida__texto__resaltado">Ningún mensaje fue encontrado</span>
-    //     Ingresa el texto que desees encriptar o desencriptar.`);
+    areaDeTextoEntrada.value = "";
+
+    // Verifico si estoy en pantallas pc desktop para agregar la imagen del chat
+    if (anchoDeVentana >= 1200) {
+        visibilizarElemento(linkImagenSalida);
+        visibilizarElemento(imagenDelChat);
+    }
+    // if (window.innerWidth >= 1200) {
+    //     // linkImagenSalida.style.display = "inline"; // Agrega estilos en línea o inline. Es mejor usar clases CSS
+    //     linkImagenSalida.classList.add('elemento__inline');
+    //     imagenDelChat.classList.add('elemento__inline');    
+    // } else {
+    //     linkImagenSalida.classList.add('elemento__oculto');
+    //     imagenDelChat.classList.add('elemento__oculto');    
+    // }
+
+    // textoAvisoNingunMensaje.innerHTML = `<span class="salida__texto__resaltado">Ningún mensaje fue encontrado</span>Ingresa el texto que desees
+    //             encriptar o desencriptar.`;
+    // textoAvisoNingunMensaje.style.display = "inline";
+    // textoDeSalida.style.display = "none";
+}
+
+function mostrarMensajeNingunTexto() {    
+    ocultarElemento(textoDeSalida);
+    visibilizarElemento(textoAvisoNingunMensaje);
+
+    // textoAvisoNingunMensaje.classList.remove('elemento__oculto');
+    // textoAvisoNingunMensaje.classList.add('elemento__inline');
+    // textoDeSalida.classList.remove('elemento__inline');
+    // textoDeSalida.classList.add('elemento__oculto');
 }
 
 // Manejo de eventos
@@ -102,5 +171,36 @@ botonDesencriptar.addEventListener('click', function() {
     }
 });
 
+areaDeTextoEntrada.addEventListener('keyup', function() {
+    let texto = obtenerTextoDeEntrada();
+
+    if (texto === "") {
+        ningunMensaje = true;
+        console.log("Ingresó un texto vacío");
+        mostrarMensajeNingunTexto();
+        visibilizarImagen();
+    } else {
+        ningunMensaje = false;
+        console.log("Ingresé un texto con caracteres para validar");
+        // mostrarTextoDeSalida(`<span class="salida__texto__resaltado">El texto que ingresaste está listo para ser encriptado o desencriptado.</span>`);
+        // textoAvisoNingunMensaje.innerHTML = `<span class="salida__texto__resaltado">Texto listo para ser encriptado o desencriptado.</span>`;
+        mostrarTextoDeSalida(`<span class="salida__texto__resaltado texto__centrado">Texto listo para ser encriptado o desencriptado.</span>`);
+    }
+});
+
+// Actualizo el ancho de la ventana al redimensionarla y actualizo la presencia de la imagen
+window.onresize = verificarPresenciaImagen;
+function verificarPresenciaImagen() {
+    console.log("Ventana redimensionada, mide " + window.innerWidth + "px de ancho");
+    anchoDeVentana = window.innerWidth;
+    visibilizarImagen();
+}
+
+// console.log("Clases de un elemento: " + textoDeSalida.classList);
+// console.log("Prueba en las clases de texto de salida: " + textoDeSalida.classList.contains('Prueba'));
+// console.log("PRUEBA en las clases de texto de salida: " + textoDeSalida.classList.contains('PRUEBA'));
+
+// textoDeSalida.classList.toggle('PRUEBA'); // Quita o agrega la clase PRUEBA 
+// console.log("Clases de un elemento: " + textoDeSalida.classList);
 
 setearInicioDeApp();

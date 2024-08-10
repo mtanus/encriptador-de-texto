@@ -6,6 +6,7 @@ let botonEncriptar = document.querySelector('.entrada__btn__encriptar');
 let botonDesencriptar = document.querySelector('.entrada__btn__desencriptar');
 let linkImagenSalida = document.querySelector('.salida__link');
 let imagenDelChat = document.querySelector('.salida__imagen__chat');
+let botonCopiar = document.querySelector('.salida__btn__copiar');
 
 let ningunMensaje = true;
 let anchoDeVentana = window.innerWidth;
@@ -87,6 +88,8 @@ function mostrarTextoDeSalida(texto) {
     // textoDeSalida.classList.add('elemento__inline');
     visibilizarElemento(textoDeSalida);
     textoDeSalida.innerHTML = texto;
+
+    // visibilizarElemento();
 }
 
 function visibilizarElemento(elemento) {
@@ -156,6 +159,7 @@ botonEncriptar.addEventListener('click', function() {
         console.log("El texto encriptado resultante es: " + encriptarTexto(texto));
 
         mostrarTextoDeSalida(encriptarTexto(texto));
+        visibilizarElemento(botonCopiar);
     }
 });
 
@@ -168,6 +172,7 @@ botonDesencriptar.addEventListener('click', function() {
         console.log("El texto desencriptado resultante es: " + desencriptarTexto(texto));
 
         mostrarTextoDeSalida(desencriptarTexto(texto));
+        visibilizarElemento(botonCopiar);
     }
 });
 
@@ -179,6 +184,7 @@ areaDeTextoEntrada.addEventListener('keyup', function() {
         console.log("Ingresó un texto vacío");
         mostrarMensajeNingunTexto();
         visibilizarImagen();
+        ocultarElemento(botonCopiar);
     } else {
         ningunMensaje = false;
         console.log("Ingresé un texto con caracteres para validar");
@@ -194,6 +200,16 @@ function verificarPresenciaImagen() {
     console.log("Ventana redimensionada, mide " + window.innerWidth + "px de ancho");
     anchoDeVentana = window.innerWidth;
     visibilizarImagen();
+}
+
+botonCopiar.addEventListener("click", () => escribirTextoAlPortapapeles(textoDeSalida.innerHTML));
+
+async function escribirTextoAlPortapapeles(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch (error) {
+    console.error(error.message);
+  }
 }
 
 // console.log("Clases de un elemento: " + textoDeSalida.classList);

@@ -80,9 +80,11 @@ body {
     gap: var(--espaciado-vertical-items);
 }
 
-.entrada button {
+.boton {
     padding: 1rem;
-    border-radius: 1rem;
+    min-height: 4rem;
+    /* height: 64px; */
+    border-radius: 1.5rem;
     font-size: 1rem;
     /* border: none; */
 }
@@ -106,10 +108,19 @@ body {
     padding: var(--margen-lateral);
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: var(--espaciado-vertical-items);
     background-color: #FFFFFF;
     border-radius: var(--redondeo-bordes);
     font-family: var(--fuente-textos);
+}
+
+.salida__link {
+    width: 100%;
+}
+
+.salida__imagen__chat {
+    width: 100%;
 }
 
 .salida__ningun__texto {
@@ -125,13 +136,20 @@ body {
     padding-bottom: 0.75rem;
 }
 
-.salida__link {
-    /* display: none; */
-}
-
 .salida__texto__resultado {
     /* display: none; */
     font-size: 1.25rem;
+    align-self: flex-start;
+}
+
+.salida__btn__copiar {
+    /* background-color: transparent; */
+    background-color: #FFFFFF;
+    border: 2px solid var(--color-acento);
+    color: var(--color-acento);
+    width: 80%;
+    /* outline: 2px solid var(--color-acento); */
+    /* outline: none; */
 }
 
 .footer {
@@ -164,10 +182,6 @@ body {
         --color-primario: yellow;
     } */
 
-    body{
-        /* background-color: yellow; */
-    }
-
     .main {
         padding-left: calc(3 * var(--margen-lateral));
         padding-right: calc(3 * var(--margen-lateral));
@@ -183,17 +197,14 @@ body {
     }
     
     .salida {
-        margin-left: calc(3 * var(--margen-lateral));
-        margin-right: calc(3 * var(--margen-lateral));
+        margin: 0px calc(3 * var(--margen-lateral)) var(--espaciado-vertical);
+        /* margin-left: calc(3 * var(--margen-lateral));
+        margin-right: calc(3 * var(--margen-lateral)); */
     }
-
+}
 
 /* Agrego media query para pc desktop */
 @media screen and (min-width: 1200px) {
-    body{
-        /* background-color: red; */
-    }
-
     .app {
         display: flex;
         flex-direction: row;
@@ -205,6 +216,11 @@ body {
         width: 70%;
     }
 
+    .entrada {
+        padding: 0px;
+        margin-bottom: var(--espaciado-vertical);
+    }
+
     .entrada__texto {
         height: 60vh;
     }    
@@ -213,14 +229,8 @@ body {
         width: 30%;
         flex-direction: column;
         justify-content: center;
-    }
-
-    .salida__link {
-        /* display: block; */
-    }
-
-    .salida__imagen__chat {
-        /* display: block; */
+        margin: 0px calc(3 * var(--margen-lateral)) calc(var(--espaciado-vertical) - var(--margen-lateral)) 0px;
+        /* margin-right: calc(3 * var(--margen-lateral)); */
     }
 
     .salida__texto__resultado {

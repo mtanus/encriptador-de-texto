@@ -20,25 +20,28 @@
                 <textarea class="entrada__texto" placeholder="Ingresa el texto aquí"></textarea>
                 <p class="entrada__reglas">Sólo minúsculas, sin acentos ni caracteres especiales.</p>
                 <div class="entrada__botones">
-                    <button class="entrada__btn__encriptar">Encriptar</button>
-                    <button class="entrada__btn__desencriptar">Desencriptar</button>
+                    <button class="entrada__btn__encriptar boton">Encriptar</button>
+                    <button class="entrada__btn__desencriptar boton">Desencriptar</button>
                 </div>
             </section>
         </main>
 
         <aside class="salida">
-            <a class="salida__link" href="https://storyset.com/online" target="_blank">
-                <img class="salida__imagen__chat" src="./assets/envio-mensajes.svg"
-                    alt="Dos personas enviándose mensajes">
-            </a>
+            <div class="salida__contenedor__imagen elemento__oculto">
+                <a class="salida__link " href="https://storyset.com/online" target="_blank">
+                    <img class="salida__imagen__chat" src="./assets/envio-mensajes.svg"
+                        alt="Dos personas enviándose mensajes">
+                </a>    
+            </div>
             <p class="salida__ningun__texto">
                 <span class="salida__texto__resaltado">Ningún mensaje fue encontrado</span>Ingresa el texto que desees
                 encriptar o desencriptar.
             </p>
-            <p class="salida__texto__resultado">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit debitis
+            <p class="salida__texto__resultado elemento__oculto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit debitis
                 voluptatem molestias aut rem ipsam, perspiciatis magni dolorem alias ab possimus earum, facilis delectus
                 veritatis quaerat perferendis! Nisi, pariatur praesentium?
             </p>
+            <button class="salida__btn__copiar boton elemento__oculto">Copiar</button>
         </aside>
 
     </div>

@@ -80,9 +80,11 @@ body {
     gap: var(--espaciado-vertical-items);
 }
 
-.entrada button {
+.boton {
     padding: 1rem;
-    border-radius: 1rem;
+    min-height: 4rem;
+    /* height: 64px; */
+    border-radius: 1.5rem;
     font-size: 1rem;
     /* border: none; */
 }
@@ -106,11 +108,26 @@ body {
     padding: var(--margen-lateral);
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: var(--espaciado-vertical-items);
     background-color: #FFFFFF;
     border-radius: var(--redondeo-bordes);
     font-family: var(--fuente-textos);
 }
+
+.salida__contenedor__imagen {
+    width: 100%;
+    max-width: 400px;
+}
+
+.salida__link {
+    width: 100%;
+}
+
+/* .salida__imagen__chat {
+    width: 100%;
+    max-width: 400px;
+} */ */
 
 .salida__ningun__texto {
     padding: calc(var(--espaciado-vertical)/2) 0.75rem;
@@ -125,12 +142,20 @@ body {
     padding-bottom: 0.75rem;
 }
 
-.salida__link {
-    display: none;
+.salida__texto__resultado {
+    /* display: none; */
+    font-size: 1.25rem;
+    align-self: flex-start;
 }
 
-.salida__texto__resultado {
-    display: none;
+.salida__btn__copiar {
+    /* background-color: transparent; */
+    background-color: #FFFFFF;
+    border: 2px solid var(--color-acento);
+    color: var(--color-acento);
+    width: 80%;
+    /* outline: 2px solid var(--color-acento); */
+    /* outline: none; */
 }
 
 .footer {
@@ -141,16 +166,30 @@ body {
     text-align: center;
 }
 
+
+/* Estilos a manejar desde JavaScript */
+.elemento__inline {
+    display: inline;
+}
+
+.elemento__oculto {
+    display: none;
+}
+
+.texto__centrado {
+    text-align: center;
+}
+
+.alerta {
+    border: 0.25rem solid #A30000;
+}
+
 /* Agrego media query para tablet */
 @media screen and (min-width: 768px) {
     /* NO FUNCIONO REDEFINIR VARIABLES */
     /* :root {
         --color-primario: yellow;
     } */
-
-    body{
-        /* background-color: yellow; */
-    }
 
     .main {
         padding-left: calc(3 * var(--margen-lateral));
@@ -167,17 +206,14 @@ body {
     }
     
     .salida {
-        margin-left: calc(3 * var(--margen-lateral));
-        margin-right: calc(3 * var(--margen-lateral));
+        margin: 0px calc(3 * var(--margen-lateral)) var(--espaciado-vertical);
+        /* margin-left: calc(3 * var(--margen-lateral));
+        margin-right: calc(3 * var(--margen-lateral)); */
     }
-
+}
 
 /* Agrego media query para pc desktop */
 @media screen and (min-width: 1200px) {
-    body{
-        /* background-color: red; */
-    }
-
     .app {
         display: flex;
         flex-direction: row;
@@ -189,6 +225,11 @@ body {
         width: 70%;
     }
 
+    .entrada {
+        padding: 0px;
+        margin-bottom: var(--espaciado-vertical);
+    }
+
     .entrada__texto {
         height: 60vh;
     }    
@@ -197,14 +238,16 @@ body {
         width: 30%;
         flex-direction: column;
         justify-content: center;
+        margin: 0px calc(3 * var(--margen-lateral)) calc(var(--espaciado-vertical) - var(--margen-lateral)) 0px;
+        /* margin-right: calc(3 * var(--margen-lateral)); */
     }
 
-    .salida__link {
-        display: block;
-    }
+    /* .salida__contenedor__imagen {
+        display: flex;
+    } */
 
-    .salida__imagen__chat {
-        display: block;
+    .salida__texto__resultado {
+        height: 100%;
     }
 
 }

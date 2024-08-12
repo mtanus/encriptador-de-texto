@@ -7,6 +7,7 @@ let botonDesencriptar = document.querySelector('.entrada__btn__desencriptar');
 let linkImagenSalida = document.querySelector('.salida__link');
 let imagenDelChat = document.querySelector('.salida__imagen__chat');
 let botonCopiar = document.querySelector('.salida__btn__copiar');
+let contenedorImagen = document.querySelector('.salida__contenedor__imagen');
 
 let ningunMensaje = true;
 let anchoDeVentana = window.innerWidth;
@@ -70,27 +71,18 @@ function obtenerTextoDeEntrada() {
 }
 
 function mostrarTextoDeSalida(texto) {
-    // linkImagenSalida.classList.remove('elemento__inline');
-    // linkImagenSalida.classList.add('elemento__oculto');
-    ocultarElemento(linkImagenSalida);
-
-    // imagenDelChat.classList.remove('elemento__inline');
-    // imagenDelChat.classList.add('elemento__oculto');
-    ocultarElemento(imagenDelChat);
-
-    // textoAvisoNingunMensaje.classList.remove('elemento__inline');
-    // textoAvisoNingunMensaje.classList.add('elemento__oculto');
-    ocultarElemento(textoAvisoNingunMensaje);
-
-
     // textoDeSalida.setAttribute('display', "inline"); // Cambia sólo el atributo en HTML como estilo inline pero NO en CSS
     // textoDeSalida.classList.remove('elemento__oculto');
     // textoDeSalida.classList.add('elemento__inline');
     visibilizarElemento(textoDeSalida);
     textoDeSalida.innerHTML = texto;
-
-    // visibilizarElemento();
 }
+
+// function mostrarMensajeNingunTexto() {    
+//     ocultarElemento(textoDeSalida);
+//     visibilizarElemento(textoAvisoNingunMensaje);
+
+// }
 
 function visibilizarElemento(elemento) {
     if (elemento.classList.contains('elemento__oculto')) {
@@ -107,12 +99,14 @@ function ocultarElemento(elemento) {
 }
 
 function visibilizarImagen() {
-    if (anchoDeVentana >= 1200) {
-        visibilizarElemento(linkImagenSalida);
-        visibilizarElemento(imagenDelChat);
+    if (anchoDeVentana >= 1200 && areaDeTextoEntrada.value === "") {
+        visibilizarElemento(contenedorImagen);
+        // visibilizarElemento(linkImagenSalida);
+        // visibilizarElemento(imagenDelChat);
     } else {
-        ocultarElemento(linkImagenSalida);
-        ocultarElemento(imagenDelChat);
+        ocultarElemento(contenedorImagen);
+        // ocultarElemento(linkImagenSalida);
+        // ocultarElemento(imagenDelChat);
     }
 }
 
@@ -121,8 +115,9 @@ function setearInicioDeApp() {
 
     // Verifico si estoy en pantallas pc desktop para agregar la imagen del chat
     if (anchoDeVentana >= 1200) {
-        visibilizarElemento(linkImagenSalida);
-        visibilizarElemento(imagenDelChat);
+        visibilizarElemento(contenedorImagen);
+        // visibilizarElemento(linkImagenSalida);
+        // visibilizarElemento(imagenDelChat);
     }
     // if (window.innerWidth >= 1200) {
     //     // linkImagenSalida.style.display = "inline"; // Agrega estilos en línea o inline. Es mejor usar clases CSS
@@ -137,16 +132,6 @@ function setearInicioDeApp() {
     //             encriptar o desencriptar.`;
     // textoAvisoNingunMensaje.style.display = "inline";
     // textoDeSalida.style.display = "none";
-}
-
-function mostrarMensajeNingunTexto() {    
-    ocultarElemento(textoDeSalida);
-    visibilizarElemento(textoAvisoNingunMensaje);
-
-    // textoAvisoNingunMensaje.classList.remove('elemento__oculto');
-    // textoAvisoNingunMensaje.classList.add('elemento__inline');
-    // textoDeSalida.classList.remove('elemento__inline');
-    // textoDeSalida.classList.add('elemento__oculto');
 }
 
 // Manejo de eventos
@@ -176,21 +161,66 @@ botonDesencriptar.addEventListener('click', function() {
     }
 });
 
-areaDeTextoEntrada.addEventListener('keyup', function() {
-    let texto = obtenerTextoDeEntrada();
+function validarTextoDeEntrada(texto) {
+    // Busco si hay caracteres distintos a minúsculas, espacios, punto o coma. Es decir, textos inválidos.
+    const expresionRegular = /[^a-z\s.,]+/g;
+    // console.log("El texto " + texto + " verifica la búsqueda de caracteres inválidos: " + expresionRegular.test(texto));
 
-    if (texto === "") {
-        ningunMensaje = true;
-        console.log("Ingresó un texto vacío");
-        mostrarMensajeNingunTexto();
+    // Invierto su valor de verdad para conocer si el texto es válido
+    return !expresionRegular.test(texto);
+}
+
+validarTextoDeEntrada("HOLA");
+validarTextoDeEntrada("hola como andas");
+validarTextoDeEntrada("hola, como andas.");
+validarTextoDeEntrada("hola, cómo andas.");
+validarTextoDeEntrada("hola, como andas?");
+
+function acondicionarSalida() {
+    let textoEscrito = obtenerTextoDeEntrada();
+    
+    if (textoEscrito === "") {
         visibilizarImagen();
+        visibilizarElemento(textoAvisoNingunMensaje);
+        ocultarElemento(textoDeSalida);
         ocultarElemento(botonCopiar);
     } else {
-        ningunMensaje = false;
+        ocultarElemento(contenedorImagen);
+        ocultarElemento(textoAvisoNingunMensaje);
+        visibilizarElemento(textoDeSalida);
+        ocultarElemento(botonCopiar);
+    }
+
+}
+
+areaDeTextoEntrada.addEventListener('keyup', function() {
+    acondicionarSalida();
+
+    let texto = obtenerTextoDeEntrada();
+    if (texto === "") {
+        // ningunMensaje = true;
+        console.log("Ingresó un texto vacío");
+        // ocultarElemento(textoDeSalida);
+        // visibilizarElemento(textoAvisoNingunMensaje);
+    
+        // mostrarMensajeNingunTexto();
+        // ocultarElemento(botonCopiar);
+    } else {
+        // ningunMensaje = false;
         console.log("Ingresé un texto con caracteres para validar");
-        // mostrarTextoDeSalida(`<span class="salida__texto__resaltado">El texto que ingresaste está listo para ser encriptado o desencriptado.</span>`);
-        // textoAvisoNingunMensaje.innerHTML = `<span class="salida__texto__resaltado">Texto listo para ser encriptado o desencriptado.</span>`;
-        mostrarTextoDeSalida(`<span class="salida__texto__resaltado texto__centrado">Texto listo para ser encriptado o desencriptado.</span>`);
+
+        let textoValido = validarTextoDeEntrada(texto);
+        console.log("El texto " + texto + " es válido: " + textoValido);
+
+        if (textoValido) {
+            if (areaDeTextoEntrada.classList.contains('alerta')) {
+                areaDeTextoEntrada.classList.remove('alerta');                
+            }
+            mostrarTextoDeSalida(`<span class="salida__texto__resaltado texto__centrado">Texto listo para ser encriptado o desencriptado.</span>`);
+        } else {
+            areaDeTextoEntrada.classList.add('alerta');
+            mostrarTextoDeSalida(`<span class="salida__texto__resaltado texto__centrado">Verifique el texto a ser encriptado o desencriptado.</span>`);    
+        }
     }
 });
 

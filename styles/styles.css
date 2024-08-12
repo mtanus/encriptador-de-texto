@@ -115,13 +115,19 @@ body {
     font-family: var(--fuente-textos);
 }
 
+.salida__contenedor__imagen {
+    width: 100%;
+    max-width: 400px;
+}
+
 .salida__link {
     width: 100%;
 }
 
-.salida__imagen__chat {
+/* .salida__imagen__chat {
     width: 100%;
-}
+    max-width: 400px;
+} */ */
 
 .salida__ningun__texto {
     padding: calc(var(--espaciado-vertical)/2) 0.75rem;
@@ -174,6 +180,9 @@ body {
     text-align: center;
 }
 
+.alerta {
+    border: 0.25rem solid #A30000;
+}
 
 /* Agrego media query para tablet */
 @media screen and (min-width: 768px) {
@@ -232,6 +241,10 @@ body {
         margin: 0px calc(3 * var(--margen-lateral)) calc(var(--espaciado-vertical) - var(--margen-lateral)) 0px;
         /* margin-right: calc(3 * var(--margen-lateral)); */
     }
+
+    /* .salida__contenedor__imagen {
+        display: flex;
+    } */
 
     .salida__texto__resultado {
         height: 100%;

@@ -216,10 +216,10 @@ areaDeTextoEntrada.addEventListener('keyup', function() {
             if (areaDeTextoEntrada.classList.contains('alerta')) {
                 areaDeTextoEntrada.classList.remove('alerta');                
             }
-            mostrarTextoDeSalida(`<span class="salida__texto__resaltado texto__centrado">Texto listo para ser encriptado o desencriptado.</span>`);
+            mostrarTextoDeSalida(`<span class="salida__texto__resaltado">Texto listo para ser encriptado o desencriptado.</span>`);
         } else {
             areaDeTextoEntrada.classList.add('alerta');
-            mostrarTextoDeSalida(`<span class="salida__texto__resaltado texto__centrado">Verifique el texto a ser encriptado o desencriptado.</span>`);    
+            mostrarTextoDeSalida(`<span class="salida__texto__resaltado">Verifique los caracteres del texto.</span>`);    
         }
     }
 });

@@ -11,7 +11,6 @@
 
 /* Creación de variables */
 :root {
-    /* --margen-lateral: 1.5rem; */
     --margen-lateral: 5%;
     --espaciado-vertical: 4rem;
     --espaciado-vertical-items: 1rem;
@@ -42,24 +41,15 @@ body {
 }
 
 .app {
-    /* max-width: var(--ancho-maximo-mobile); */
-    /* width: 90%; */
-    /* margin: 0px auto; */
     padding: 0px var(--margen-lateral) var(--espaciado-vertical);
     margin: 0px auto;
     display: flex;
     flex-direction: column;
     gap: var(--espaciado-vertical);
     max-width: 625px;
-    /* min-height: 70vh; */
-}
-
-.main {
-    /* padding: 0px var(--margen-lateral); */
 }
 
 .entrada {
-    /* padding-bottom: var(--espaciado-vertical); */
     display: flex;
     flex-direction: column;
     gap: var(--espaciado-vertical-items);
@@ -69,7 +59,6 @@ body {
 .entrada__texto {
     height: 20vh;
     background-color: var(--color-secundario);
-    /* color: #000000; */
     font-size: 1.2rem;
     border: none;
     border-radius: var(--redondeo-bordes);
@@ -100,10 +89,8 @@ body {
 .boton {
     padding: 1rem;
     min-height: 4rem;
-    /* height: 64px; */
     border-radius: 1.5rem;
     font-size: 1rem;
-    /* border: none; */
 }
 
 .entrada__btn__encriptar {
@@ -116,15 +103,11 @@ body {
     background-color: var(--color-primario);
     border: 2px solid var(--color-acento);
     color: var(--color-acento);
-    /* outline: 2px solid var(--color-acento); */
-    /* outline: none; */
 }
 
 .salida {
     padding: 1rem var(--margen-lateral);
-    /* margin: 0px var(--margen-lateral) var(--espaciado-vertical); */
     margin-bottom: var(--espaciado-vertical);
-    /* padding: var(--margen-lateral); */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -147,17 +130,6 @@ body {
     width: 100%;
 }
 
-/* .salida__imagen__chat {
-    width: 100%;
-    max-width: 400px;
-} */
-
-.salida__ningun__texto {
-    /* padding: calc(var(--espaciado-vertical)/2) 0.75rem;
-    font-size: 1rem;
-    text-align: center; */
-}
-
 .salida__texto__resaltado {
     display: block;
     font-size: 1.5rem;
@@ -166,7 +138,6 @@ body {
 }
 
 .salida__texto__resultado {
-    /* display: none; */
     font-size: 1.25rem;
     align-self: flex-start;
 }
@@ -177,8 +148,6 @@ body {
     border: 2px solid var(--color-acento);
     color: var(--color-acento);
     width: 80%;
-    /* outline: 2px solid var(--color-acento); */
-    /* outline: none; */
 }
 
 .footer {
@@ -188,7 +157,6 @@ body {
     font-size: 0.9rem;
     text-align: center;
     line-height: 1.25rem;
-    /* height: auto; */
     width: 100%;
     position: absolute;
     bottom: 0;
@@ -221,11 +189,7 @@ body {
 
     .app {
         max-width: 1000px;
-        /* padding: 0px calc(2 * var(--margen-lateral)) var(--espaciado-vertical); */
         padding: calc(0.5 * var(--espaciado-vertical)) calc(2 * var(--margen-lateral));
-
-        /* padding-left: calc(2 * var(--margen-lateral));
-        padding-right: calc(2 * var(--margen-lateral)); */
     }
 
     .entrada__botones {
@@ -237,11 +201,6 @@ body {
         flex-grow: 1;
     }
     
-    .salida {
-        /* margin: 0px calc(2 * var(--margen-lateral)) var(--espaciado-vertical); */
-        /* margin-left: calc(3 * var(--margen-lateral));
-        margin-right: calc(3 * var(--margen-lateral)); */
-    }
 }
 
 /* Agrego media query para pc desktop */
@@ -257,20 +216,13 @@ body {
 
     .main {
         display: flex;
-        /* flex-grow: 3; */
         width: 60%;
         padding-bottom: 1rem;
         margin-bottom: var(--espaciado-vertical);
-        /* flex-grow: 20;
-        /* padding: 0px;
-        padding-left: calc(2 * var(--margen-lateral));
-        width: 70%; */
     }
 
     .entrada {
         width: 100%;
-        /* padding: 0px;
-        margin-bottom: var(--espaciado-vertical); */
     }
 
     .entrada__texto {
@@ -279,33 +231,13 @@ body {
     }    
 
     .salida {
-        /* flex-grow: 1; */
         width: 40%;
-        /* height: auto; */
         padding: 1rem calc(0.5 * var(--margen-lateral));
-        /* margin-bottom: 0px; */
-        /* flex-direction: column;
-        justify-content: center;
-        align-items: center; */
-        /* margin: 0px;
-        margin-right: calc(2 * var(--margen-lateral)); */
-    }
-
-    /* .salida__contenedor__imagen {
-        display: flex;
-    } */
-
-    .salida__ningun__texto {
-        /* text-align: center; */
     }
 
     .salida__texto__resultado {
         height: 100%;
         text-align: left;
-    }
-
-    .salida__btn__copiar {
-        /* align-self: flex-end; */
     }
 
 }

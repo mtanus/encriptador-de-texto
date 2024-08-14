@@ -110,12 +110,8 @@ function setearInicioDeApp() {
 // Manejo de eventos
 botonEncriptar.addEventListener('click', function() {
     let texto = obtenerTextoDeEntrada();
-    console.log(obtenerTextoDeEntrada());
     
     if (texto !== "" && validarTextoDeEntrada(texto)) {
-        console.log("El texto a encriptar será: " + texto);
-        console.log("El texto encriptado resultante es: " + encriptarTexto(texto));
-
         mostrarTextoDeSalida(encriptarTexto(texto));
         visibilizarElemento(botonCopiar);
     }
@@ -123,12 +119,8 @@ botonEncriptar.addEventListener('click', function() {
 
 botonDesencriptar.addEventListener('click', function() {
     let texto = obtenerTextoDeEntrada();
-    console.log(obtenerTextoDeEntrada());
 
     if (texto !== "" && validarTextoDeEntrada(texto)) {
-        console.log("El texto a desencriptar será: " + texto);
-        console.log("El texto desencriptado resultante es: " + desencriptarTexto(texto));
-
         mostrarTextoDeSalida(desencriptarTexto(texto));
         visibilizarElemento(botonCopiar);
     }
@@ -137,7 +129,6 @@ botonDesencriptar.addEventListener('click', function() {
 function validarTextoDeEntrada(texto) {
     // Busco si hay caracteres distintos a minúsculas, espacios, punto o coma. Es decir, textos inválidos.
     const expresionRegular = /[^a-z\s.,]+/g;
-    // console.log("El texto " + texto + " verifica la búsqueda de caracteres inválidos: " + expresionRegular.test(texto));
 
     // Invierto su valor de verdad para conocer si el texto es válido
     return !expresionRegular.test(texto);
@@ -168,32 +159,26 @@ areaDeTextoEntrada.addEventListener('keyup', function() {
         if (areaDeTextoEntrada.classList.contains('alerta')) {
             areaDeTextoEntrada.classList.remove('alerta');
         }
-        
-        console.log("Ingresó un texto vacío");
-        } else {
-            
-            console.log("Ingresé un texto con caracteres para validar");
+    } else {
+        let textoValido = validarTextoDeEntrada(texto);
 
-            let textoValido = validarTextoDeEntrada(texto);
-            console.log("El texto " + texto + " es válido: " + textoValido);
-
-            if (textoValido) {
-                if (areaDeTextoEntrada.classList.contains('alerta')) {
-                    areaDeTextoEntrada.classList.remove('alerta');
-                }
-                mostrarTextoDeSalida(`<span class="salida__texto__resaltado">Texto listo para ser encriptado o desencriptado.</span>`);
-            } else {
-                areaDeTextoEntrada.classList.add('alerta');
-                mostrarTextoDeSalida(`<span class="salida__texto__resaltado">Verifique los caracteres del texto.</span>`);
+        if (textoValido) {
+            if (areaDeTextoEntrada.classList.contains('alerta')) {
+                areaDeTextoEntrada.classList.remove('alerta');
             }
+            mostrarTextoDeSalida(`<span class="salida__texto__resaltado">Texto listo para ser encriptado o desencriptado.</span>`);
+        } else {
+            areaDeTextoEntrada.classList.add('alerta');
+            mostrarTextoDeSalida(`<span class="salida__texto__resaltado">Verifique los caracteres del texto.</span>`);
         }
+    }
 });
 
 // Actualizo el ancho de la ventana al redimensionarla y actualizo la presencia de la imagen
 // Asigno un evento al redimensionar la ventana
 window.onresize = verificarPresenciaImagen;
 function verificarPresenciaImagen() {
-    console.log("Ventana redimensionada, mide " + window.innerWidth + "px de ancho");
+    // console.log("Ventana redimensionada, mide " + window.innerWidth + "px de ancho");
     anchoDeVentana = window.innerWidth;
     visibilizarImagen();
 }

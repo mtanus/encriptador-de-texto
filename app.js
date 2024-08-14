@@ -139,7 +139,7 @@ botonEncriptar.addEventListener('click', function() {
     let texto = obtenerTextoDeEntrada();
     console.log(obtenerTextoDeEntrada());
     
-    if (texto != "") {
+    if (texto !== "" && validarTextoDeEntrada(texto)) {
         console.log("El texto a encriptar será: " + texto);
         console.log("El texto encriptado resultante es: " + encriptarTexto(texto));
 
@@ -152,7 +152,7 @@ botonDesencriptar.addEventListener('click', function() {
     let texto = obtenerTextoDeEntrada();
     console.log(obtenerTextoDeEntrada());
 
-    if (texto != "") {
+    if (texto !== "" && validarTextoDeEntrada(texto)) {
         console.log("El texto a desencriptar será: " + texto);
         console.log("El texto desencriptado resultante es: " + desencriptarTexto(texto));
 
@@ -198,6 +198,9 @@ areaDeTextoEntrada.addEventListener('keyup', function() {
 
     let texto = obtenerTextoDeEntrada();
     if (texto === "") {
+        if (areaDeTextoEntrada.classList.contains('alerta')) {
+            areaDeTextoEntrada.classList.remove('alerta');                
+        }
         // ningunMensaje = true;
         console.log("Ingresó un texto vacío");
         // ocultarElemento(textoDeSalida);

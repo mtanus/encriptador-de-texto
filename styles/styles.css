@@ -66,10 +66,6 @@ body {
     padding: 1rem var(--margen-lateral);
 }
 
-.entrada__texto:focus {
-    outline: none;
-}
-
 .entrada__texto::placeholder {
     font-family: var(--fuente-textos);
     color: #090909;
@@ -91,6 +87,19 @@ body {
     min-height: 4rem;
     border-radius: 1.5rem;
     font-size: 1rem;
+    /* outline: none; */
+}
+
+/* Efecto al clickear el botón */
+.boton:active { 
+    transform: scale(0.95);
+}
+
+/* Efecto al enfocar el botón por ejemplo con el tabulador */
+.boton:focus,
+.boton:hover {
+    outline: none;
+    box-shadow: 0.1rem 0.4rem 0.5rem var(--color-secundario);
 }
 
 .entrada__btn__encriptar {
@@ -123,7 +132,7 @@ body {
 
 .salida__contenedor__imagen {
     width: 100%;
-    max-width: 400px;
+    max-width: 300px;
 }
 
 .salida__link {
@@ -143,7 +152,7 @@ body {
 }
 
 .salida__btn__copiar {
-    /* background-color: transparent; */
+    /* background-color: transparent; The transparent keyword maps to rgba(0,0,0,0). */ 
     background-color: #FFFFFF;
     border: 2px solid var(--color-acento);
     color: var(--color-acento);
@@ -176,8 +185,18 @@ body {
     text-align: center;
 }
 
-.alerta {
-    border: 0.25rem solid #A30000;
+.contorno--valido {
+    /* border: 0.25rem solid #A30000; */
+    outline: 0.15rem solid #004700;
+}
+
+.contorno--alerta {
+    /* border: 0.25rem solid #A30000; */
+    outline: 0.25rem solid #A30000;
+}
+
+.sin__contorno {
+    outline: none;
 }
 
 /* Agrego media query para tablet */

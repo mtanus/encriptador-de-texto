@@ -128,7 +128,7 @@ botonDesencriptar.addEventListener('click', function() {
 
 function validarTextoDeEntrada(texto) {
     // Busco si hay caracteres distintos a minúsculas, espacios, punto o coma. Es decir, textos inválidos.
-    const expresionRegular = /[^a-z\s.,]+/g;
+    const expresionRegular = /[^a-zñ\s.,]+/g;
 
     // Invierto su valor de verdad para conocer si el texto es válido
     return !expresionRegular.test(texto);
@@ -151,26 +151,77 @@ function acondicionarSalida() {
 
 }
 
+function agregarContornoAlerta(elemento){
+    if (!elemento.classList.contains('contorno--alerta')) {
+        elemento.classList.add('contorno--alerta');
+    }
+}
+
+function removerContornoAlerta(elemento){
+    if (elemento.classList.contains('contorno--alerta')) {
+        elemento.classList.remove('contorno--alerta');
+    }
+}
+
+function agregarContornoValido(elemento){
+    if (!elemento.classList.contains('contorno--valido')) {
+        elemento.classList.add('contorno--valido');
+    }
+}
+
+function removerContornoValido(elemento){
+    if (elemento.classList.contains('contorno--valido')) {
+        elemento.classList.remove('contorno--valido');
+    }
+}
+
+function quitarContornoAElemento(elemento){
+    if (!elemento.classList.contains('sin__contorno')) {
+        elemento.classList.add('sin__contorno');
+    }
+}
+
 areaDeTextoEntrada.addEventListener('keyup', function() {
     acondicionarSalida();
 
     let texto = obtenerTextoDeEntrada();
     if (texto === "") {
-        if (areaDeTextoEntrada.classList.contains('alerta')) {
-            areaDeTextoEntrada.classList.remove('alerta');
-        }
+        removerContornoAlerta(areaDeTextoEntrada);
+        agregarContornoValido(areaDeTextoEntrada);
     } else {
         let textoValido = validarTextoDeEntrada(texto);
 
         if (textoValido) {
-            if (areaDeTextoEntrada.classList.contains('alerta')) {
-                areaDeTextoEntrada.classList.remove('alerta');
-            }
+            removerContornoAlerta(areaDeTextoEntrada);
+            agregarContornoValido(areaDeTextoEntrada);
             mostrarTextoDeSalida(`<span class="salida__texto__resaltado">Texto listo para ser encriptado o desencriptado.</span>`);
         } else {
-            areaDeTextoEntrada.classList.add('alerta');
+            removerContornoValido(areaDeTextoEntrada);
+            agregarContornoAlerta(areaDeTextoEntrada);
             mostrarTextoDeSalida(`<span class="salida__texto__resaltado">Verifique los caracteres del texto.</span>`);
         }
+    }
+});
+
+// Agrego eventos al enfocar o desenfocar la entrada de texto
+areaDeTextoEntrada.addEventListener('focus', function() {
+    let texto = obtenerTextoDeEntrada();
+
+    if (!validarTextoDeEntrada(texto)) {
+        agregarContornoAlerta(areaDeTextoEntrada);
+    } else {
+        agregarContornoValido(areaDeTextoEntrada);
+    }
+});
+
+areaDeTextoEntrada.addEventListener('blur', function() {
+    let texto = obtenerTextoDeEntrada();
+
+    if (!validarTextoDeEntrada(texto)) {
+        agregarContornoAlerta(areaDeTextoEntrada);
+    } else {
+        removerContornoAlerta(areaDeTextoEntrada);
+        removerContornoValido(areaDeTextoEntrada);
     }
 });
 

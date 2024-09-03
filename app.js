@@ -135,10 +135,10 @@ function validarTextoDeEntrada(texto) {
     return !expresionRegular.test(texto);
 }
 
-function acondicionarSalida() {
-    let textoEscrito = obtenerTextoDeEntrada();
+function acondicionarSalidaSegunEntrada(textoEntrada) {
+    // let textoEscrito = obtenerTextoDeEntrada();
     
-    if (textoEscrito === "") {
+    if (textoEntrada === "") {
         visibilizarImagen();
         visibilizarElemento(textoAvisoNingunMensaje);
         ocultarElemento(textoDeSalida);
@@ -148,6 +148,14 @@ function acondicionarSalida() {
         ocultarElemento(textoAvisoNingunMensaje);
         visibilizarElemento(textoDeSalida);
         ocultarElemento(botonCopiar);
+
+        let textoValido = validarTextoDeEntrada(textoEntrada);
+        if (textoValido) {
+            mostrarTextoDeSalida(`<span class="salida__texto__resaltado">Texto listo para ser encriptado o desencriptado.</span>`);
+        } else {
+            mostrarTextoDeSalida(`<span class="salida__texto__resaltado">Verifique los caracteres del texto.</span>`);
+        }
+
     }
 
 }
@@ -182,47 +190,62 @@ function quitarContornoAElemento(elemento){
     }
 }
 
-areaDeTextoEntrada.addEventListener('keyup', function() {
-    acondicionarSalida();
-
-    let texto = obtenerTextoDeEntrada();
-    if (texto === "") {
+function controlarContornoAlerta(textoEntrada) {
+    if (textoEntrada === "") {
         removerContornoAlerta(areaDeTextoEntrada);
         agregarContornoValido(areaDeTextoEntrada);
     } else {
-        let textoValido = validarTextoDeEntrada(texto);
+        let textoValido = validarTextoDeEntrada(textoEntrada);
 
         if (textoValido) {
             removerContornoAlerta(areaDeTextoEntrada);
             agregarContornoValido(areaDeTextoEntrada);
-            mostrarTextoDeSalida(`<span class="salida__texto__resaltado">Texto listo para ser encriptado o desencriptado.</span>`);
         } else {
             removerContornoValido(areaDeTextoEntrada);
             agregarContornoAlerta(areaDeTextoEntrada);
-            mostrarTextoDeSalida(`<span class="salida__texto__resaltado">Verifique los caracteres del texto.</span>`);
         }
     }
+}
+
+areaDeTextoEntrada.addEventListener('keyup', function() {
+    let texto = obtenerTextoDeEntrada();
+    
+    acondicionarSalidaSegunEntrada(texto);
+    controlarContornoAlerta(texto);
+
+    // if (texto === "") {
+    //     removerContornoAlerta(areaDeTextoEntrada);
+    //     agregarContornoValido(areaDeTextoEntrada);
+    // } else {
+    //     let textoValido = validarTextoDeEntrada(texto);
+
+    //     if (textoValido) {
+    //         removerContornoAlerta(areaDeTextoEntrada);
+    //         agregarContornoValido(areaDeTextoEntrada);
+    //         // mostrarTextoDeSalida(`<span class="salida__texto__resaltado">Texto listo para ser encriptado o desencriptado.</span>`);
+    //     } else {
+    //         removerContornoValido(areaDeTextoEntrada);
+    //         agregarContornoAlerta(areaDeTextoEntrada);
+    //         // mostrarTextoDeSalida(`<span class="salida__texto__resaltado">Verifique los caracteres del texto.</span>`);
+    //     }
+    // }
 });
 
 // Agrego eventos al enfocar o desenfocar la entrada de texto
 areaDeTextoEntrada.addEventListener('focus', function() {
     let texto = obtenerTextoDeEntrada();
 
-    if (!validarTextoDeEntrada(texto)) {
-        agregarContornoAlerta(areaDeTextoEntrada);
-    } else {
-        agregarContornoValido(areaDeTextoEntrada);
-    }
+    controlarContornoAlerta(texto);
 });
 
 areaDeTextoEntrada.addEventListener('blur', function() {
     let texto = obtenerTextoDeEntrada();
 
-    if (!validarTextoDeEntrada(texto)) {
-        agregarContornoAlerta(areaDeTextoEntrada);
-    } else {
+    if (texto === "") {
         removerContornoAlerta(areaDeTextoEntrada);
         removerContornoValido(areaDeTextoEntrada);
+    } else {
+        acondicionarSalidaSegunEntrada(texto);
     }
 });
 

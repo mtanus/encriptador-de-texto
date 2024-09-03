@@ -10,6 +10,7 @@ let botonCopiar = document.querySelector('.salida__btn__copiar');
 let contenedorImagen = document.querySelector('.salida__contenedor__imagen');
 // let ningunMensaje = true;
 let anchoDeVentana = window.innerWidth;
+let textoCopiado = document.querySelector('.salida__texto__copiado');
 
 // Declaración de funciones
 function encriptarTexto(textoAEncriptar) {
@@ -239,6 +240,13 @@ botonCopiar.addEventListener("click", () => escribirTextoAlPortapapeles(textoDeS
 async function escribirTextoAlPortapapeles(text) {
   try {
     await navigator.clipboard.writeText(text);
+
+    // Muestro el mensaje de texto copiado!
+    visibilizarElemento(textoCopiado);
+    setTimeout(() => {
+        ocultarElemento(textoCopiado);
+    }, 750);
+
   } catch (error) {
     console.error(error.message);
   }

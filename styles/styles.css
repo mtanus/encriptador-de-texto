@@ -159,6 +159,12 @@ body {
     width: 80%;
 }
 
+.salida__texto__copiado {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-acento);
+}
+
 .footer {
     padding: calc(0.25 * var(--espaciado-vertical)) var(--margen-lateral);
     background-color: var(--color-secundario);

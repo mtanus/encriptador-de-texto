@@ -249,6 +249,18 @@ areaDeTextoEntrada.addEventListener('blur', function() {
     }
 });
 
+// Agrego evento al pegar texto de entrada
+areaDeTextoEntrada.addEventListener('paste', function(evento) {
+    // Prevenir el comportamiento predeterminado (opcional)
+    // evento.preventDefault();
+
+    // Obtener el contenido pegado
+    const textoPegado = (evento.clipboardData || window.clipboardData).getData('text');
+    acondicionarSalidaSegunEntrada(textoPegado);
+    controlarContornoAlerta(textoPegado);
+});
+
+
 // Actualizo el ancho de la ventana al redimensionarla y actualizo la presencia de la imagen
 // Asigno un evento al redimensionar la ventana
 window.onresize = verificarPresenciaImagen;
